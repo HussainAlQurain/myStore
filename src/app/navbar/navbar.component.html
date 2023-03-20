@@ -1,0 +1,19 @@
+<header>
+  <nav>
+    <div class="logo">
+      <img src="../../assets/logo.png" alt="Logo"/>
+      <h2 href="#">myStore</h2>
+    </div>
+    <div class="menu-icon">
+      <i class="fas fa-bars"></i>
+    </div>
+    <div class="nav-items">
+      <ul>
+        <li><a href="#">Products</a></li>
+        <li><a href="#">Shopping Cart</a></li>
+        <button *ngIf="!isLoggedIn" (click)="login()">Login</button>
+        <button *ngIf="isLoggedIn" (click)="logout()">Logout</button>
+      </ul>
+    </div>
+  </nav>
+</header>
