@@ -8,7 +8,7 @@
       <ul>
         <li>Products</li>
         <li>Shopping Cart</li>
-        <button *ngIf="!isLoggedIn" (click)="login()">Login</button>
+        <button *ngIf="!isLoggedIn" routerLink="/login" (click)="login()">Login</button>
         <button *ngIf="isLoggedIn" (click)="logout()">Logout</button>
         <button routerLink="/register" *ngIf="!isLoggedIn">Register</button>
       </ul>

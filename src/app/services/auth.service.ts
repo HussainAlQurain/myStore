@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../types/user';
 
@@ -14,10 +14,15 @@ export class AuthService {
     })
   };
 
-  isLoggedIn: boolean = false;
+  private _isLoggedIn$ = new BehaviorSubject<boolean>(false);
+  isLoggedIn$ = this._isLoggedIn$.asObservable();
+
   user: User = {};
 
-  constructor(private auth: HttpClient) {}
+  constructor(private auth: HttpClient) {
+    const token = localStorage.getItem('token');
+    this._isLoggedIn$.next(!!token);
+  }
 
    createUser(u:User): Observable<User> {
     return this.auth.post<User>('http://localhost:3000/api/users/create', u, this.httpOptions).pipe(
@@ -30,6 +35,7 @@ export class AuthService {
             'Content-Type':  'application/json',
             'Authorization': `Bearer ${token}`
           }
+          this._isLoggedIn$.next(true);
         }
       })
     )
@@ -46,9 +52,14 @@ export class AuthService {
             'Content-Type':  'application/json',
             'Authorization': `Bearer ${token}`
           }
+          this._isLoggedIn$.next(true);
         }
       })
     )
+   }
+   logout(): void{
+    localStorage.clear();
+    this._isLoggedIn$.next(false);
    }
 
 }

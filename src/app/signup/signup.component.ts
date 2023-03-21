@@ -20,7 +20,7 @@ export class SignupComponent {
   onSubmit(): void {
     let user: User = {first_name: this.first_name, last_name: this.last_name, username: this.username, password: this.password, email: this.email}
     this.userService.createUser(user).subscribe(data => {
-      alert(data);
+      localStorage.setItem('token', JSON.stringify(data));
     })
   }
 }

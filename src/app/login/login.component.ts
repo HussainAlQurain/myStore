@@ -22,7 +22,7 @@ export class LoginComponent {
 
   onSubmit(): void {
     this.userService.login(this.username, this.password).subscribe(data => {
-      alert(data);
+      localStorage.setItem('token', JSON.stringify(data));
     })
   }
 
