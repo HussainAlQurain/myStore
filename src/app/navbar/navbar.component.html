@@ -1,8 +1,8 @@
 <header>
   <nav>
     <div>
-      <img src="../../assets/logo.png" alt="Logo"/>
-      <h2>myStore</h2>
+      <img routerLink="/" src="../../assets/logo.png" alt="Logo"/>
+      <h2 routerLink="/">myStore</h2>
     </div>
     <div>
       <ul>
@@ -10,6 +10,7 @@
         <li>Shopping Cart</li>
         <button *ngIf="!isLoggedIn" (click)="login()">Login</button>
         <button *ngIf="isLoggedIn" (click)="logout()">Logout</button>
+        <button routerLink="/register" *ngIf="!isLoggedIn">Register</button>
       </ul>
     </div>
   </nav>
