@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { User } from '../types/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ export class LoginComponent {
   username: string = ''
   password: string = ''
 
-  constructor(private userService: AuthService){
+  constructor(private userService: AuthService, private router: Router){
 
   }
 
@@ -22,7 +23,8 @@ export class LoginComponent {
 
   onSubmit(): void {
     this.userService.login(this.username, this.password).subscribe(data => {
-      localStorage.setItem('token', JSON.stringify(data));
+      alert('Signed in successfully')
+      this.router.navigateByUrl('/')
     })
   }
 

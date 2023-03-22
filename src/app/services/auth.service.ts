@@ -45,9 +45,9 @@ export class AuthService {
     return this.auth.post<User>('http://localhost:3000/api/users/login', {username, password}, this.httpOptions).pipe(
       tap((user: User) => {
         this.user = user;
-        const token = user.token;
+        const token = user;
         if(token) {
-          localStorage.setItem('token', token);
+          localStorage.setItem('token', token as string);
           this.httpOptions = {
             'Content-Type':  'application/json',
             'Authorization': `Bearer ${token}`
