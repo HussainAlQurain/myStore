@@ -1,7 +1,1 @@
-<p>products works!</p>
-<ul>
-    <li *ngFor="let p of products">
-        {{ p.id }}
-        {{ p.price }}
-    </li>
-</ul>
+<app-product-item *ngFor="let p of product" [product]="p"></app-product-item>

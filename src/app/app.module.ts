@@ -9,6 +9,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { ProductsComponent } from './products/products.component';
+import { ProductItemComponent } from './product-item/product-item.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ProductsComponent } from './products/products.component';
     NavbarComponent,
     SignupComponent,
     LoginComponent,
-    ProductsComponent
+    ProductsComponent,
+    ProductItemComponent
   ],
   imports: [
     BrowserModule,
