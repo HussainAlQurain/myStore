@@ -8,24 +8,10 @@ import { AuthService } from '../services/auth.service';
 })
 export class NavbarComponent {
 
-  isLoggedIn:boolean = false
-  constructor(private authService: AuthService) {}
+  constructor(public authService: AuthService) {}
 
   ngOnInit(){
     
-  }
-
-  login(){
-    console.log(this.authService.isLoggedIn$)
-    if(this.authService.isLoggedIn$){
-      this.isLoggedIn = true;
-    }
-  }
-  logout(){
-    console.log(this.authService.isLoggedIn$)
-    if(!this.authService.isLoggedIn$){
-      this.isLoggedIn = false;
-    }
   }
 
 }

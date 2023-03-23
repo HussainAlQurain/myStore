@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../types/user';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class AuthService {
 
   user: User = {};
 
-  constructor(private auth: HttpClient) {
+  constructor(private auth: HttpClient, private router: Router) {
     const token = localStorage.getItem('token');
     this._isLoggedIn$.next(!!token);
   }
@@ -53,6 +54,7 @@ export class AuthService {
             'Authorization': `Bearer ${token}`
           }
           this._isLoggedIn$.next(true);
+          this.router.navigateByUrl('/')
         }
       })
     )
@@ -60,6 +62,7 @@ export class AuthService {
    logout(): void{
     localStorage.clear();
     this._isLoggedIn$.next(false);
+    this.router.navigateByUrl('/')
    }
 
 }

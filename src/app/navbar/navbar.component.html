@@ -8,9 +8,9 @@
       <ul>
         <li>Products</li>
         <li>Shopping Cart</li>
-        <button *ngIf="!isLoggedIn" routerLink="/login" (click)="login()">Login</button>
-        <button *ngIf="isLoggedIn" (click)="logout()">Logout</button>
-        <button routerLink="/register" *ngIf="!isLoggedIn">Register</button>
+        <button *ngIf="!(authService.isLoggedIn$ | async)" routerLink="/login">Login</button>
+        <button *ngIf="authService.isLoggedIn$ | async" (click)="authService.logout()">Logout</button>
+        <button routerLink="/register" *ngIf="!(authService.isLoggedIn$ | async)">Register</button>
       </ul>
     </div>
   </nav>
