@@ -13,5 +13,13 @@ export class ProductsService {
   getProducts(): Observable<Product[]> {
     return this.productHttp.get<Product[]>("http://localhost:3000/api/products")
   }
+  //for testing
+  addProducts(p: Product): Observable<Product[]> {
+    return this.productHttp.post<Product[]>("http://localhost:3000/api/products/create", p)
+  }
+
+  getJson(){
+    return this.productHttp.get<Product[]>('../../assets/data.json')
+  }
 
 }
