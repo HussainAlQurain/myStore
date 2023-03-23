@@ -3,6 +3,8 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../types/user';
 import { Router } from '@angular/router';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -56,6 +58,12 @@ export class AuthService {
           this._isLoggedIn$.next(true);
           this.router.navigateByUrl('/')
         }
+      }),
+      catchError((error) => {
+        if(error.status === 400){
+          alert('Invalid Username or Password. Please try again')
+        }
+        return throwError(error);
       })
     )
    }
