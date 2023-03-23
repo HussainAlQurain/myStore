@@ -8,6 +8,8 @@ import { Product } from '../types/product';
 })
 export class ProductItemComponent {
 
+  values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  selectedValue: number = 1;
   @Input() product: Product;
   constructor(){
     this.product = {
