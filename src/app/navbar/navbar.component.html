@@ -5,10 +5,14 @@
       <h2 routerLink="/">myStore</h2>
     </div>
     <div>
+      <h3 routerLink="/">Products</h3>
+      <h3 routerLink="/cart">Cart</h3>
+    </div>
+    <div>
       <ul>
         <li>Products</li>
         <li>Shopping Cart</li>
-        <button (click)="addProduct()">Test Products</button>
+        <button (click)="addProduct()">Add Test Products (require login)</button>
         <button *ngIf="!(authService.isLoggedIn$ | async)" routerLink="/login">Login</button>
         <button *ngIf="authService.isLoggedIn$ | async" (click)="authService.logout()">Logout</button>
         <button routerLink="/register" *ngIf="!(authService.isLoggedIn$ | async)">Register</button>
