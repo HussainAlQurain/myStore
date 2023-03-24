@@ -18,7 +18,7 @@ export class ProductsService {
     return this.productHttp.post<Product[]>("http://localhost:3000/api/products/create", p)
   }
 
-  getJson(){
+  getJson(): Observable<Product[]> {
     return this.productHttp.get<Product[]>('../../assets/data.json')
   }
 

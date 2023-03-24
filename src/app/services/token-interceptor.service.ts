@@ -9,6 +9,7 @@ export class TokenInterceptorService {
   constructor() { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler) {
+    console.log("Interceptor function")
     const token = localStorage.getItem('token');
     if (token) {
       request = request.clone({

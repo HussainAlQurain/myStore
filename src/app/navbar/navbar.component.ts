@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { concatMap, forkJoin } from 'rxjs';
+import { catchError, concatMap, forkJoin, map, tap, throwError, timeout } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import { ProductsService } from '../services/products.service';
 import { Product } from '../types/product';
@@ -17,20 +17,13 @@ export class NavbarComponent {
     
   }
 
-  addTestProducts() {
-    this.http.getJson().pipe(
-      concatMap((data: Product[]) => {
-        const obs = data.map(p => this.http.addProducts(p));
-        return forkJoin(obs);
-      })
-    ).subscribe(
-      () => {
-        console.log('Products added successfully');
-      },
-      (error) => {
-        console.error('Error adding products:', error);
-      }
-    );
+  addProduct() {
+    this.http.getJson().pipe(tap(products => {
+      products.map(p => this.http.addProducts(p).subscribe(() => {
+        console.warn(p, " Has been added");
+      }))
+    })).subscribe(() => {
+    })
   }
 
 }
