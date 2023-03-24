@@ -1,10 +1,10 @@
 <div class="product-container">
-    <img src=" {{ product.url }}" alt="{{ product.url }}">
+    <img src={{product.url}} alt="{{ product.url }}">
     <h1> {{ product.name }}</h1>
     <h2> {{ product.price }}$</h2>
     <h3> {{ product.description }}</h3>
     <select [(ngModel)]="selectedValue">
         <option *ngFor="let value of values" [value]="value">{{value}}</option>
       </select>
-    <button>Add to cart</button>
+    <button (click)="add()">Add to cart</button>
 </div>

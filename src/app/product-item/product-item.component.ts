@@ -25,4 +25,8 @@ export class ProductItemComponent {
 
   }
 
+  add(){
+    alert('Added to cart')
+  }
+
 }
