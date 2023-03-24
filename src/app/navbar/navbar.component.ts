@@ -3,6 +3,7 @@ import { catchError, concatMap, forkJoin, map, tap, throwError, timeout } from '
 import { AuthService } from '../services/auth.service';
 import { ProductsService } from '../services/products.service';
 import { Product } from '../types/product';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +12,7 @@ import { Product } from '../types/product';
 })
 export class NavbarComponent {
 
-  constructor(public authService: AuthService, private http: ProductsService) {}
+  constructor(public authService: AuthService, private http: ProductsService, private location: Location) {}
 
   ngOnInit(){
     
@@ -23,6 +24,7 @@ export class NavbarComponent {
         console.warn(p, " Has been added");
       }))
     })).subscribe(() => {
+      location.reload();
     })
   }
 
