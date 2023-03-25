@@ -26,9 +26,10 @@ export class ProductItemComponent {
   }
 
   add(){
-    alert(this.productService.getUserId());
-     //print the product object to the console after stringify
-      console.log(JSON.stringify(this.product));
+    this.productService.addToCart(this.selectedValue, this.product.id as unknown as string).subscribe(data => {
+      alert("Product added to cart")
+    })
+    
   }
 
 }

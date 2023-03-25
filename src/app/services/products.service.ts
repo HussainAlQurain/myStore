@@ -5,12 +5,15 @@ import { Product } from '../types/product';
 import jwt_decode from 'jwt-decode';
 import { DecodedToken } from '../types/decodedToken';
 import { OrderProduct } from '../types/OrderProduct';
+import { Order } from '../types/order';
+import { catchError, switchMap } from 'rxjs/operators';
+
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
   
-  private orderId: string | undefined;
+  private order: string | undefined;
 
   constructor(private productHttp: HttpClient) { }
 
@@ -34,11 +37,59 @@ export class ProductsService {
     return decoded["user"]["id"];
   }
 
-  //add the product to the cart
-  addToCart(quantity: number, orderId: string, productId: string): Observable<OrderProduct> {
-    return this.productHttp.post<OrderProduct>(`http://localhost:3000/api/orders/${orderId}/products`, {
+  //get the order id by the user id
+  getOrderId(): Observable<Order> {
+    let userId = this.getUserId();
+    return this.productHttp.get<Order>(`http://localhost:3000/api/orders/${userId}`)
+  }
+
+  //create a new order if the user doesn't have one
+  createOrder(): Observable<Order> {
+    let userId = this.getUserId();
+    return this.productHttp.post<Order>(`http://localhost:3000/api/orders/create`, {
+      status: 'active',
+      user_id: userId
+    })
+  }
+
+
+  // add the product to the cart
+  addToCart(quantity: number, productId: string): Observable<OrderProduct> {
+    let userId = this.getUserId();
+
+    if (this.order == undefined) {
+      return this.getOrderId().pipe(
+        tap(data => {
+          console.log(data)
+          this.order = data.id?.toString();
+        }),
+        catchError(err => {
+          console.log(err)
+          if (err.status == 404) {
+            console.log('no order found')
+          }
+          return this.createOrder().pipe(
+            tap(data => {
+              console.log(data)
+              this.order = data.id?.toString();
+            })
+          )
+        }),
+        switchMap(() => {
+          return this.productHttp.post<OrderProduct>(`http://localhost:3000/api/orders/${this.order}/products`, {
+            quantity: quantity,
+            orderId: this.order,
+            productId: productId
+          })
+        })
+      )
+    }
+    console.log(this.order)
+    //console the type of order
+    console.log(typeof this.order)
+  return this.productHttp.post<OrderProduct>(`http://localhost:3000/api/orders/${this.order}/products`, {
       quantity: quantity,
-      orderId: orderId,
+      orderId: this.order,
       productId: productId
     })
   }
