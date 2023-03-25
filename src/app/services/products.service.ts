@@ -60,17 +60,14 @@ export class ProductsService {
     if (this.order == undefined) {
       return this.getOrderId().pipe(
         tap(data => {
-          console.log(data)
           this.order = data.id?.toString();
         }),
         catchError(err => {
-          console.log(err)
           if (err.status == 404) {
-            console.log('no order found')
+            console.log('create no order')
           }
           return this.createOrder().pipe(
             tap(data => {
-              console.log(data)
               this.order = data.id?.toString();
             })
           )
@@ -84,9 +81,6 @@ export class ProductsService {
         })
       )
     }
-    console.log(this.order)
-    //console the type of order
-    console.log(typeof this.order)
   return this.productHttp.post<OrderProduct>(`http://localhost:3000/api/orders/${this.order}/products`, {
       quantity: quantity,
       orderId: this.order,

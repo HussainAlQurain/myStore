@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductItemComponent } from './product-item/product-item.component';
 import { TokenInterceptorService } from './services/token-interceptor.service';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
     SignupComponent,
     LoginComponent,
     ProductsComponent,
-    ProductItemComponent
+    ProductItemComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

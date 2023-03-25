@@ -25,7 +25,7 @@ export class ProductItemComponent {
 
   }
 
-  add(){
+  addProduct(){
     this.productService.addToCart(this.selectedValue, this.product.id as unknown as string).subscribe(data => {
       alert("Product added to cart")
     })
