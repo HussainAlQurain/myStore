@@ -10,7 +10,7 @@ import { Location } from '@angular/common';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
 
   constructor(public authService: AuthService, private http: ProductsService, private location: Location) {}
 

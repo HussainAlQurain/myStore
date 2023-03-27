@@ -17,6 +17,11 @@ export class ProductsService {
 
   constructor(private productHttp: HttpClient) { }
 
+  //get product details by id
+  getProduct(id: number): Observable<Product> {
+    return this.productHttp.get<Product>(`http://localhost:3000/api/products/${id}`)
+  }
+
   getProducts(): Observable<Product[]> {
     return this.productHttp.get<Product[]>("http://localhost:3000/api/products")
   }
@@ -88,5 +93,23 @@ export class ProductsService {
     })
   }
 
-
+  //get the products in the cart
+  getCartProducts(): Observable<OrderProduct[]> {
+    let userId = this.getUserId();
+    //get the order id
+    return this.getOrderId().pipe(
+      tap(data => {
+        this.order = data.id?.toString();
+      }),
+      switchMap(() => {
+        //get the products id in the cart
+        return this.productHttp.get<OrderProduct[]>(`http://localhost:3000/api/orders/${this.order}/products`)
+      })
+    )
+  }
+  //delete the product from the cart
+  deleteProductFromCart(id: number): Observable<OrderProduct> {
+    return this.productHttp.delete<OrderProduct>(`http://localhost:3000/api/orders/${this.order}/products/${id}`)
+  }
+  
 }

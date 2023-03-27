@@ -6,7 +6,7 @@ import { ProductsService } from '../services/products.service';
   templateUrl: './product-item.component.html',
   styleUrls: ['./product-item.component.css']
 })
-export class ProductItemComponent {
+export class ProductItemComponent implements OnInit {
 
   values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   selectedValue: number = 1;
