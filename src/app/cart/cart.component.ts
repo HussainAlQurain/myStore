@@ -37,6 +37,13 @@ export class CartComponent implements OnInit {
   onSubmit(){
     console.log('submitted');
   }
+  //function that removes the product from the cart
+  //needs to be fixed
+  removeFromCart(id: number){
+    this.http.deleteProductFromCart(id).subscribe((data) => {
+      console.log(data);
+    })
+  }
   
 
 }
