@@ -56,7 +56,14 @@ export class ProductsService {
       user_id: userId
     })
   }
-
+  //update the order status to completed
+  updateOrderStatus(): Observable<Order> {
+    let userId = this.getUserId();
+    return this.productHttp.put<Order>(`http://localhost:3000/api/orders/${this.order}`, {
+      status: 'completed',
+      user_id: userId
+    })
+  }
 
   // add the product to the cart
   addToCart(quantity: number, productId: string): Observable<OrderProduct> {

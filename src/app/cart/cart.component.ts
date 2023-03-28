@@ -37,10 +37,12 @@ export class CartComponent implements OnInit {
       this.getProductDetails(parseInt(product.product_id))
     })
   }
-
-  //to be fixed
+  //function that sends the order details to the server
   onSubmit(){
-    console.log('submitted');
+    this.http.updateOrderStatus().subscribe((data) => {
+      console.log(data);
+    })
+    alert("Order placed successfully!")
   }
   //function that filters the products_in_order array and the products array
   onRemove(id: number){
