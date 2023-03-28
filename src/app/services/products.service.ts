@@ -111,5 +111,12 @@ export class ProductsService {
   deleteProductFromCart(id: number): Observable<OrderProduct> {
     return this.productHttp.delete<OrderProduct>(`http://localhost:3000/api/orders/${this.order}/products/${id}`)
   }
+
+  //update the quantity of the product in the cart
+  updateProductQuantity(id: number, quantity: number): Observable<OrderProduct> {
+    return this.productHttp.put<OrderProduct>(`http://localhost:3000/api/orders/${this.order}/products/${id}`, {
+      quantity: quantity
+    })
+  }
   
 }
