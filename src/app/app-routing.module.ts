@@ -5,12 +5,14 @@ import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ProductsComponent } from './products/products.component';
 import { SignupComponent } from './signup/signup.component';
+import { OrderCompletionComponent } from './order-completion/order-completion.component';
 
 const routes: Routes = [
   { path: '', component: ProductsComponent },
   { path: 'register', component: SignupComponent },
   { path: 'login', component: LoginComponent },
   { path: 'cart', component: CartComponent },
+  { path: 'success/:name/:price', component: OrderCompletionComponent },
 ];
 
 @NgModule({
