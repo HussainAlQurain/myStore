@@ -6,6 +6,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ProductsComponent } from './products/products.component';
 import { SignupComponent } from './signup/signup.component';
 import { OrderCompletionComponent } from './order-completion/order-completion.component';
+import { ProductItemComponent } from './product-item/product-item.component';
 
 const routes: Routes = [
   { path: '', component: ProductsComponent },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'cart', component: CartComponent },
   { path: 'success/:name/:price', component: OrderCompletionComponent },
+  { path: 'product/:id', component: ProductItemComponent },
 ];
 
 @NgModule({
