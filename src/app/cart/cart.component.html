@@ -3,7 +3,7 @@
         <img src="{{p.url}}" alt="product image" />
         <p>{{p.name}}</p>
         <p>{{p.price}}</p>
-        <p>Amount: <input (change)="changeQuantity(p.id!, $event)" type="number" min="1" max="10" [value]="getQuantity(p.id!)"></p>
+        <p>Amount: <input (ngModelChange)="changeQuantity(p.id!, $event)" type="number" min="1" max="10" [value]="getQuantity(p.id!)"></p>
         <button (click)="removeFromCart(p.id!)">Remove</button>
     </div>
     <div>
