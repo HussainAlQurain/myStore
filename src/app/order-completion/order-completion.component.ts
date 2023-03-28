@@ -10,15 +10,15 @@ export class OrderCompletionComponent implements OnInit {
   name: string | null = '';
   price: number | null = 0;
 
-
   constructor(private activeRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.activeRoute.queryParams.subscribe(params => {
-      this.name = params['name'];
-      this.price = Number(params['price']);
+    this.activeRoute.paramMap.subscribe(params => {
+      this.name = params.get('name');
+      this.price = Number(params.get('price'));
     });
   }
+
 
 }
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../services/products.service';
 import { OrderProduct } from '../types/OrderProduct';
 import { Product } from '../types/product';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -15,7 +16,7 @@ export class CartComponent implements OnInit {
   full_name: string = '';
   address: string = '';
   credit_card: string = '';
-  constructor(private http: ProductsService ) { }
+  constructor(private http: ProductsService, private route: Router ) { }
 
 
   getProductDetails(id: number){
@@ -43,6 +44,9 @@ export class CartComponent implements OnInit {
       console.log(data);
     })
     alert("Order placed successfully!")
+    const name = this.full_name;
+    const price = this.getTotalPrice();
+    this.route.navigateByUrl(`/success/${name}/${price}`);
   }
   //function that filters the products_in_order array and the products array
   onRemove(id: number){
