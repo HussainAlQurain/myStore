@@ -12,6 +12,7 @@ import { ProductsComponent } from './products/products.component';
 import { ProductItemComponent } from './product-item/product-item.component';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { CartComponent } from './cart/cart.component';
+import { OrderCompletionComponent } from './order-completion/order-completion.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { CartComponent } from './cart/cart.component';
     ProductsComponent,
     ProductItemComponent,
     CartComponent,
+    OrderCompletionComponent,
   ],
   imports: [
     BrowserModule,
