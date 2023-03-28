@@ -76,7 +76,7 @@ export class CartComponent implements OnInit {
       })
       total += price!.price * product.quantity;
     })
-    return total;
+    return Math.round(total * 100) / 100;
     }
     catch{
       return 0;
