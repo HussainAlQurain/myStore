@@ -27,8 +27,9 @@ export class ProductItemComponent implements OnInit {
 
   }
 
-  addProduct(amount: number, p_id: string){
-    this.addToCart.emit({amount: amount, id: p_id});
+  addProduct(amount: number, p_id: number){
+    const pid = p_id.toString();
+    this.addToCart.emit({amount: amount, id: pid});
   }
 
 }
