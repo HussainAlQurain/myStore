@@ -125,5 +125,8 @@ export class ProductsService {
       quantity: quantity
     })
   }
+  updateOrderToUndefined() {
+    this.order = undefined;
+  }
   
 }

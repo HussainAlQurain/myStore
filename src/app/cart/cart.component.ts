@@ -46,6 +46,7 @@ export class CartComponent implements OnInit {
     alert("Order placed successfully!")
     const name = this.full_name;
     const price = this.getTotalPrice();
+    this.http.updateOrderToUndefined();
     this.route.navigateByUrl(`/success/${name}/${price}`);
   }
   //function that filters the products_in_order array and the products array
