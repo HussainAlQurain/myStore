@@ -14,12 +14,18 @@ MyStore is a single-page application built in Angular, that offers a rich, dynam
 
 ### Install Dependencies
 
-` npm install `
+``` npm install ```
 
 ### Start the server
 
-` ng serve `
+``` ng serve ```
 
 Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
 
 NB: Be sure to allow the default port of 4200
+
+## This Server requires backend to fetch the data. *** Please refer to my other repository and follow the steps to run the backend server ***
+### `` https://github.com/HussainAlQurain/Storefront-backend ``
+
+#### When you have both servers running you can sign up with an account and after that Click the button 'Add tests products' to add products to the database.
+#### And then the new the new products retrieved from the database will be displayed.
