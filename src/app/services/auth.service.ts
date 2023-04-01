@@ -28,7 +28,7 @@ export class AuthService {
   }
 
    createUser(u:User): Observable<User> {
-    return this.auth.post<User>('http://localhost:3000/api/users/create', u, this.httpOptions).pipe(
+    return this.auth.post<User>('/api/users/create', u, this.httpOptions).pipe(
       tap((user: User) => {
         this.user = user;
         const token = user.token;
@@ -45,7 +45,7 @@ export class AuthService {
    }
 
    login(username: string, password: string): Observable<User>{
-    return this.auth.post<User>('http://localhost:3000/api/users/login', {username, password}, this.httpOptions).pipe(
+    return this.auth.post<User>('/api/users/login', {username, password}, this.httpOptions).pipe(
       tap((user: User) => {
         this.user = user;
         const token = user;

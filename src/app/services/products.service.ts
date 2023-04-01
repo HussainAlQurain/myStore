@@ -19,15 +19,15 @@ export class ProductsService {
 
   //get product details by id
   getProduct(id: number): Observable<Product> {
-    return this.productHttp.get<Product>(`http://localhost:3000/api/products/${id}`)
+    return this.productHttp.get<Product>(`/api/products/${id}`)
   }
 
   getProducts(): Observable<Product[]> {
-    return this.productHttp.get<Product[]>("http://localhost:3000/api/products")
+    return this.productHttp.get<Product[]>("/api/products")
   }
   //for testing
   addProducts(p: Product): Observable<Product[]> {
-    return this.productHttp.post<Product[]>("http://localhost:3000/api/products/create", p)
+    return this.productHttp.post<Product[]>("/api/products/create", p)
   }
 
   getJson(): Observable<Product[]> {
@@ -45,13 +45,13 @@ export class ProductsService {
   //get the order id by the user id
   getOrderId(): Observable<Order> {
     let userId = this.getUserId();
-    return this.productHttp.get<Order>(`http://localhost:3000/api/orders/${userId}`)
+    return this.productHttp.get<Order>(`/api/orders/${userId}`)
   }
 
   //create a new order if the user doesn't have one
   createOrder(): Observable<Order> {
     let userId = this.getUserId();
-    return this.productHttp.post<Order>(`http://localhost:3000/api/orders/create`, {
+    return this.productHttp.post<Order>(`/api/orders/create`, {
       status: 'active',
       user_id: userId
     })
@@ -59,7 +59,7 @@ export class ProductsService {
   //update the order status to completed
   updateOrderStatus(): Observable<Order> {
     let userId = this.getUserId();
-    return this.productHttp.put<Order>(`http://localhost:3000/api/orders/${this.order}`, {
+    return this.productHttp.put<Order>(`/api/orders/${this.order}`, {
       status: 'completed',
       user_id: userId
     })
@@ -85,7 +85,7 @@ export class ProductsService {
           )
         }),
         switchMap(() => {
-          return this.productHttp.post<OrderProduct>(`http://localhost:3000/api/orders/${this.order}/products`, {
+          return this.productHttp.post<OrderProduct>(`/api/orders/${this.order}/products`, {
             quantity: quantity,
             orderId: this.order,
             productId: productId
@@ -93,7 +93,7 @@ export class ProductsService {
         })
       )
     }
-  return this.productHttp.post<OrderProduct>(`http://localhost:3000/api/orders/${this.order}/products`, {
+  return this.productHttp.post<OrderProduct>(`/api/orders/${this.order}/products`, {
       quantity: quantity,
       orderId: this.order,
       productId: productId
@@ -110,18 +110,18 @@ export class ProductsService {
       }),
       switchMap(() => {
         //get the products id in the cart
-        return this.productHttp.get<OrderProduct[]>(`http://localhost:3000/api/orders/${this.order}/products`)
+        return this.productHttp.get<OrderProduct[]>(`/api/orders/${this.order}/products`)
       })
     )
   }
   //delete the product from the cart
   deleteProductFromCart(id: number): Observable<OrderProduct> {
-    return this.productHttp.delete<OrderProduct>(`http://localhost:3000/api/orders/${this.order}/products/${id}`)
+    return this.productHttp.delete<OrderProduct>(`/api/orders/${this.order}/products/${id}`)
   }
 
   //update the quantity of the product in the cart
   updateProductQuantity(id: number, quantity: number): Observable<OrderProduct> {
-    return this.productHttp.put<OrderProduct>(`http://localhost:3000/api/orders/${this.order}/products/${id}`, {
+    return this.productHttp.put<OrderProduct>(`/api/orders/${this.order}/products/${id}`, {
       quantity: quantity
     })
   }
