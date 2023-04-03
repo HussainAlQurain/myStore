@@ -24,6 +24,11 @@ Navigate to http://localhost:4200/. The app will automatically reload if you cha
 
 NB: Be sure to allow the default port of 4200
 
+## This Server now is configured to connect to my backend server.
+### Please log in using username: admin and password: Admin@123
+### Or create a new user.
+
+## Otherwise you could use setup the backend like this:
 ## This Server requires backend to fetch the data. ** Please refer to my other repository and follow the steps to run the backend server **
 ### https://github.com/HussainAlQurain/Storefront-backend
 
